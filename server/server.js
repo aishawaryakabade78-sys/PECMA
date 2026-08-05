@@ -127,6 +127,8 @@ app.post("/login", (req, res) => {
       return res.status(400).json({ message: "Wrong password" });
     }
 
+
+    
     res.json({
       message: "Login successful 🎉",
       role: user.role,
