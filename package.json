@@ -1,6 +1,11 @@
 {
   "dependencies": {
+<<<<<<< HEAD
     "@tailwindcss/vite": "^4.3.3",
     "tailwindcss": "^4.3.3"
+=======
+    "axios": "^1.13.6",
+    "react-router-dom": "^7.13.1"
+>>>>>>> b58bb166b06915b36d14e45c9a4eadadd15d98b0
   }
 }
