@@ -21,13 +21,23 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+
+            // New users are customers
+            'role' => 'customer',
         ]);
 
         $token = $user->createToken('react-app')->plainTextToken;
 
         return response()->json([
             'message' => 'Registration successful',
-            'user' => $user,
+
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+            ],
+
             'token' => $token,
         ], 201);
     }
@@ -53,7 +63,14 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Login successful',
-            'user' => $user,
+
+            'user' => [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email,
+                'role' => $user->role,
+            ],
+
             'token' => $token,
         ], 200);
     }
@@ -74,7 +91,12 @@ class AuthController extends Controller
     public function user(Request $request)
     {
         return response()->json([
-            'user' => $request->user(),
+            'user' => [
+                'id' => $request->user()->id,
+                'name' => $request->user()->name,
+                'email' => $request->user()->email,
+                'role' => $request->user()->role,
+            ],
         ]);
     }
 }

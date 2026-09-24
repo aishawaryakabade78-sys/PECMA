@@ -37,10 +37,31 @@ const Login = () => {
                 JSON.stringify(response.data.user)
             );
 
+            // Get user
+            const user = response.data.user;
+
+            console.log("Logged User:", user);
+            console.log("User Role:", user.role);
+
             alert("Login successful");
 
-            // Go to Dashboard
-            navigate("/dashboard");
+            // =========================
+            // ROLE BASED REDIRECT
+            // =========================
+
+            if (user.role === "admin") {
+
+                navigate("/admin/dashboard");
+
+            } else if (user.role === "customer") {
+
+                navigate("/shop");
+
+            } else {
+
+                alert("Invalid user role");
+
+            }
 
         } catch (error) {
 
@@ -60,15 +81,12 @@ const Login = () => {
 
         <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-400 flex items-center justify-center px-4">
 
-            {/* Login Card */}
             <div className="w-full max-w-md">
 
                 <div className="bg-white rounded-[30px] shadow-2xl px-10 py-8">
 
-                    {/* Top Header */}
                     <div className="flex justify-between items-center mb-5">
 
-                        {/* Close icon */}
                         <button
                             type="button"
                             className="w-7 h-7 rounded-full border border-gray-300 text-gray-400 flex items-center justify-center hover:bg-gray-100"
@@ -82,17 +100,12 @@ const Login = () => {
 
                     </div>
 
-
-                    {/* Title */}
                     <h1 className="text-center text-2xl font-bold text-indigo-600 mb-7">
                         Log in
                     </h1>
 
-
-                    {/* Login Form */}
                     <form onSubmit={handleLogin}>
 
-                        {/* Email */}
                         <input
                             type="email"
                             placeholder="Email"
@@ -117,8 +130,6 @@ const Login = () => {
                             "
                         />
 
-
-                        {/* Password */}
                         <input
                             type="password"
                             placeholder="Password"
@@ -144,8 +155,6 @@ const Login = () => {
                             "
                         />
 
-
-                        {/* Forgot Password */}
                         <div className="text-center mt-2 mb-5">
 
                             <Link
@@ -157,8 +166,6 @@ const Login = () => {
 
                         </div>
 
-
-                        {/* Login Button */}
                         <button
                             type="submit"
                             className="
@@ -183,8 +190,6 @@ const Login = () => {
 
                     </form>
 
-
-                    {/* Register Link */}
                     <p className="text-center text-xs text-gray-500 mt-6">
 
                         Don't have an account?{" "}
